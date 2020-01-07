@@ -30,15 +30,15 @@ function Reference({ date }) {
         {projectList.map(({ id, info }) => (
           <tbody key={id}>
             <tr>
-              <td>{info.name}</td>
-              <td>{info.deadline}</td>
-              <td>{info.leader}</td>
-              <td>{info.member}</td>
-              <td>{info.condition}</td>
-              <td>{info.thisWeekPlan}</td>
-              <td>{info.thisWeekResult}</td>
-              <td>{info.problem}</td>
-              <td>{info.nextWeekPlan}</td>
+              <td>{info.basicInfo.name}</td>
+              <td>{info.basicInfo.deadline}</td>
+              <td>{info.basicInfo.leader}</td>
+              <td>{info.basicInfo.member}</td>
+              <td>{info.weeklyInfo.condition}</td>
+              <td>{info.weeklyInfo.thisWeekPlan}</td>
+              <td>{info.weeklyInfo.thisWeekResult}</td>
+              <td>{info.weeklyInfo.problem}</td>
+              <td>{info.weeklyInfo.nextWeekPlan}</td>
               <td>
                 <Button bsStyle='link' value={id} onClick={edit}>
                   編集

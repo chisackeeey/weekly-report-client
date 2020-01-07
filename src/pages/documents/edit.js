@@ -60,26 +60,32 @@ function Edit({ value }) {
           <Table striped bordered condensed hover>
             <ItemContainer>
               <tr>
+                <td>日付</td>
+                <td>{projectInfo.weeklyInfo.date}</td>
+              </tr>
+            </ItemContainer>
+            <ItemContainer>
+              <tr>
                 <td>案件</td>
-                <td>{projectInfo.name}</td>
+                <td>{projectInfo.basicInfo.name}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>リリース期限</td>
-                <td>{projectInfo.deadline}</td>
+                <td>{projectInfo.basicInfo.deadline}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>担当役席</td>
-                <td>{projectInfo.leader}</td>
+                <td>{projectInfo.basicInfo.leader}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>メンバー</td>
-                <td>{projectInfo.member}</td>
+                <td>{projectInfo.basicInfo.member}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
@@ -90,7 +96,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='condition'
                     name='condition'
-                    defaultValue={projectInfo.condition}
+                    defaultValue={projectInfo.weeklyInfo.condition}
                   />
                 </td>
               </tr>
@@ -103,7 +109,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='thisWeekPlan'
                     name='thisWeekPlan'
-                    defaultValue={projectInfo.thisWeekPlan}
+                    defaultValue={projectInfo.weeklyInfo.thisWeekPlan}
                     rows='10'
                   />
                 </td>
@@ -117,7 +123,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='thisWeekResult'
                     name='thisWeekResult'
-                    defaultValue={projectInfo.thisWeekResult}
+                    defaultValue={projectInfo.weeklyInfo.thisWeekResult}
                     rows='10'
                   />
                 </td>
@@ -131,7 +137,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='problem'
                     name='problem'
-                    defaultValue={projectInfo.problem}
+                    defaultValue={projectInfo.weeklyInfo.problem}
                     rows='5'
                   />
                 </td>
@@ -145,7 +151,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='nextWeekPlan'
                     name='nextWeekPlan'
-                    defaultValue={projectInfo.nextWeekPlan}
+                    defaultValue={projectInfo.weeklyInfo.nextWeekPlan}
                     rows='10'
                   />
                 </td>
