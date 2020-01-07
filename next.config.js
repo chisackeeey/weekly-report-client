@@ -1,20 +1,15 @@
-/* eslint-disable */
-require("dotenv").config();
 const path = require("path");
 const withCSS = require("@zeit/next-css");
 
 module.exports = withCSS({
   distDir: "../.next",
-  //   publicRuntimeConfig: {
-  //     accessToken: process.env.QIITA_ACCESS_TOKEN,
-  //     basePath
-  //   },
-  //   exportPathMap() {
-  //     return {
-  //       "/": { page: "/" }
-  //     };
-  //   },
-  assetPrefix: basePath,
+  exportPathMap() {
+    return {
+      "/": { page: "/documents" },
+      "/documents": { page: "/documents/index" },
+      "/documents/reference": { page: "/documents/reference" }
+    };
+  },
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
