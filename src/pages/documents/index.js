@@ -1,5 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
+import Layout from "../../components/Layout";
 
 const documentList = [
   {
@@ -23,11 +24,7 @@ const reference = e => {
 
 function Home() {
   return (
-    <div>
-      <link
-        rel='stylesheet'
-        href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'
-      ></link>
+    <Layout>
       <Table striped bordered condensed hover>
         <thead>
           <tr>
@@ -46,7 +43,7 @@ function Home() {
           </tbody>
         ))}
       </Table>
-    </div>
+    </Layout>
   );
 }
 
