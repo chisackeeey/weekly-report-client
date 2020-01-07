@@ -1,51 +1,16 @@
 import { Button, Table } from "react-bootstrap";
+import Router from "next/router";
+import Layout from "../../components/Layout";
+import projectList from "src/constants/ProjectList";
 
-const projectList = [
-  {
-    id: "1",
-    name: "総合評定",
-    deadline: "2020年3月",
-    reader: "黒川淳美",
-    member: "竹林",
-    condition: "on",
-    thisWeekPlan: "色々やる",
-    thisWeekResult: "色々やった",
-    problem: "",
-    nextWeekPlan: "頑張る"
-  },
-  {
-    id: "2",
-    name: "キャリアデザインシート",
-    deadline: "2020年3月",
-    reader: "黒川淳美",
-    member: "竹林",
-    condition: "on",
-    thisWeekPlan: "色々やる",
-    thisWeekResult: "色々やった",
-    problem: "",
-    nextWeekPlan: "頑張る"
-  },
-  {
-    id: "3",
-    name: "リスク管理確認ツール",
-    deadline: "2020年3月",
-    reader: "黒川淳美",
-    member: "高橋",
-    condition: "on",
-    thisWeekPlan: "色々やる",
-    thisWeekResult: "色々やった",
-    problem: "",
-    nextWeekPlan: "頑張る"
-  }
-];
+const edit = e => {
+  const id = e.target.value;
+  Router.push(`/documents/edit?id=${id}`);
+};
 
 function Reference({ date }) {
   return (
-    <>
-      <link
-        rel='stylesheet'
-        href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'
-      ></link>
+    <Layout>
       <p>{date}</p>
       <Table striped bordered condensed hover>
         <thead>
@@ -62,39 +27,28 @@ function Reference({ date }) {
             <th>編集</th>
           </tr>
         </thead>
-        {projectList.map(
-          ({
-            id,
-            name,
-            deadline,
-            reader,
-            member,
-            condition,
-            thisWeekPlan,
-            thisWeekResult,
-            problem,
-            nextWeekPlan
-          }) => (
-            <tbody key={id}>
-              <tr>
-                <td>{name}</td>
-                <td>{deadline}</td>
-                <td>{reader}</td>
-                <td>{member}</td>
-                <td>{condition}</td>
-                <td>{thisWeekPlan}</td>
-                <td>{thisWeekResult}</td>
-                <td>{problem}</td>
-                <td>{nextWeekPlan}</td>
-                <td>
-                  <Button bsStyle='link'>編集</Button>
-                </td>
-              </tr>
-            </tbody>
-          )
-        )}
+        {projectList.map(({ id, info }) => (
+          <tbody key={id}>
+            <tr>
+              <td>{info.name}</td>
+              <td>{info.deadline}</td>
+              <td>{info.leader}</td>
+              <td>{info.member}</td>
+              <td>{info.condition}</td>
+              <td>{info.thisWeekPlan}</td>
+              <td>{info.thisWeekResult}</td>
+              <td>{info.problem}</td>
+              <td>{info.nextWeekPlan}</td>
+              <td>
+                <Button bsStyle='link' value={id} onClick={edit}>
+                  編集
+                </Button>
+              </td>
+            </tr>
+          </tbody>
+        ))}
       </Table>
-    </>
+    </Layout>
   );
 }
 
