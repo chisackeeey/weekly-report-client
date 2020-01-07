@@ -53,6 +53,7 @@ function Edit({ value }) {
 
   return (
     <Layout>
+      <h2>報告内容編集</h2>
       {projectInfo === null ? (
         <p>Loading...</p>
       ) : (

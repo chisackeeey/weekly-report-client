@@ -11,7 +11,7 @@ const edit = e => {
 function Reference({ date }) {
   return (
     <Layout>
-      <p>{date}</p>
+      <h2>{date}の週次進捗会</h2>
       <Table striped bordered condensed hover>
         <thead>
           <tr>
