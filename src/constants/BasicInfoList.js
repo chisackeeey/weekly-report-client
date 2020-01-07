@@ -15,10 +15,10 @@ const basicInfoList = [
   },
   {
     projectId: 3,
-    name: "キャリアデザインシート",
+    name: "リスク管理確認ツール",
     deadline: "2020年3月",
     leader: "黒川SD",
-    member: "竹林"
+    member: "高橋"
   }
 ];
 
