@@ -14,7 +14,6 @@ function BasicInfo() {
             <th>リリース期限</th>
             <th>担当役席</th>
             <th>メンバー</th>
-            <th>進捗状況</th>
           </tr>
         </thead>
         {basicInfoList.map(({ projectId, name, deadline, leader, member }) => (
