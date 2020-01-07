@@ -27,20 +27,20 @@ function Reference({ date }) {
             <th>編集</th>
           </tr>
         </thead>
-        {projectList.map(({ id, info }) => (
-          <tbody key={id}>
+        {projectList.map(({ basicInfo, weeklyInfo }) => (
+          <tbody key={basicInfo.id}>
             <tr>
-              <td>{info.basicInfo.name}</td>
-              <td>{info.basicInfo.deadline}</td>
-              <td>{info.basicInfo.leader}</td>
-              <td>{info.basicInfo.member}</td>
-              <td>{info.weeklyInfo.condition}</td>
-              <td>{info.weeklyInfo.thisWeekPlan}</td>
-              <td>{info.weeklyInfo.thisWeekResult}</td>
-              <td>{info.weeklyInfo.problem}</td>
-              <td>{info.weeklyInfo.nextWeekPlan}</td>
+              <td>{basicInfo.name}</td>
+              <td>{basicInfo.deadline}</td>
+              <td>{basicInfo.leader}</td>
+              <td>{basicInfo.member}</td>
+              <td>{weeklyInfo.condition}</td>
+              <td>{weeklyInfo.thisWeekPlan}</td>
+              <td>{weeklyInfo.thisWeekResult}</td>
+              <td>{weeklyInfo.problem}</td>
+              <td>{weeklyInfo.nextWeekPlan}</td>
               <td>
-                <Button bsStyle='link' value={id} onClick={edit}>
+                <Button bsStyle='link' value={weeklyInfo.id} onClick={edit}>
                   編集
                 </Button>
               </td>

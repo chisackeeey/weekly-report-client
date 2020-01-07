@@ -30,22 +30,24 @@ const back = () => {
 
 function Edit({ value }) {
   const [projectId, setProjectId] = useState(1);
-  const [projectInfo, setProjectInfo] = useState(null);
+  const [basicInfo, setBasicInfo] = useState(null);
+  const [weeklyInfo, setWeeklyInfo] = useState(null);
 
   useEffect(() => {
     if (value) {
-      setProjectId(value);
+      setProjectId(Number(value));
     }
   }, [value]);
 
   useEffect(() => {
     if (projectId > 0) {
-      projectList.map(({ id, info }) => {
-        if (id === projectId) {
-          setProjectInfo(info);
+      projectList.map(({ basicInfo, weeklyInfo }) => {
+        console.log(projectId);
+        if (weeklyInfo.id === projectId) {
+          setBasicInfo(basicInfo);
+          setWeeklyInfo(weeklyInfo);
         }
       });
-      console.log(projectInfo);
     } else {
       Router.push("/");
     }
@@ -54,7 +56,7 @@ function Edit({ value }) {
   return (
     <Layout>
       <h2>報告内容編集</h2>
-      {projectInfo === null ? (
+      {basicInfo === null || weeklyInfo === null ? (
         <p>Loading...</p>
       ) : (
         <FlexForm>
@@ -62,31 +64,31 @@ function Edit({ value }) {
             <ItemContainer>
               <tr>
                 <td>日付</td>
-                <td>{projectInfo.weeklyInfo.date}</td>
+                <td>{weeklyInfo.date}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>案件</td>
-                <td>{projectInfo.basicInfo.name}</td>
+                <td>{basicInfo.name}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>リリース期限</td>
-                <td>{projectInfo.basicInfo.deadline}</td>
+                <td>{basicInfo.deadline}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>担当役席</td>
-                <td>{projectInfo.basicInfo.leader}</td>
+                <td>{basicInfo.leader}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>メンバー</td>
-                <td>{projectInfo.basicInfo.member}</td>
+                <td>{basicInfo.member}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
@@ -97,7 +99,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='condition'
                     name='condition'
-                    defaultValue={projectInfo.weeklyInfo.condition}
+                    defaultValue={weeklyInfo.condition}
                   />
                 </td>
               </tr>
@@ -110,7 +112,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='thisWeekPlan'
                     name='thisWeekPlan'
-                    defaultValue={projectInfo.weeklyInfo.thisWeekPlan}
+                    defaultValue={weeklyInfo.thisWeekPlan}
                     rows='10'
                   />
                 </td>
@@ -124,7 +126,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='thisWeekResult'
                     name='thisWeekResult'
-                    defaultValue={projectInfo.weeklyInfo.thisWeekResult}
+                    defaultValue={weeklyInfo.thisWeekResult}
                     rows='10'
                   />
                 </td>
@@ -138,7 +140,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='problem'
                     name='problem'
-                    defaultValue={projectInfo.weeklyInfo.problem}
+                    defaultValue={weeklyInfo.problem}
                     rows='5'
                   />
                 </td>
@@ -152,7 +154,7 @@ function Edit({ value }) {
                     componentClass='textarea'
                     id='nextWeekPlan'
                     name='nextWeekPlan'
-                    defaultValue={projectInfo.weeklyInfo.nextWeekPlan}
+                    defaultValue={weeklyInfo.nextWeekPlan}
                     rows='10'
                   />
                 </td>
