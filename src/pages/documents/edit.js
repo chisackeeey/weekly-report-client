@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import styled from "styled-components";
 import Router from "next/router";
-import Layout from "../../components/Layout";
+import Layout from "src/components/Layout";
 import projectList from "src/constants/ProjectList";
 
 const FlexForm = styled.form`

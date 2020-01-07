@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
-import Layout from "../../components/Layout";
+import Layout from "src/components/Layout";
 import dateList from "src/constants/DateList";
 
 const reference = e => {
