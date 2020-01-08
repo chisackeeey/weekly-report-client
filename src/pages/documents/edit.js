@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import styled from "styled-components";
 import Router from "next/router";
+import BackButton from "src/components/BackButton";
 import Layout from "src/components/Layout";
 import projectList from "src/constants/ProjectList";
 
@@ -23,10 +24,6 @@ const SubmitButtonContainer = styled.div`
 const BackButtonContainer = styled.div`
   margin-top: 10px;
 `;
-
-const back = () => {
-  Router.back();
-};
 
 function Edit({ value }) {
   const [projectId, setProjectId] = useState(1);
@@ -165,9 +162,7 @@ function Edit({ value }) {
             <Button bsStyle='primary'>保存</Button>
           </SubmitButtonContainer>
           <BackButtonContainer>
-            <Button bsStyle='link' onClick={back}>
-              戻る
-            </Button>
+            <BackButton />
           </BackButtonContainer>
         </FlexForm>
       )}

@@ -1,7 +1,13 @@
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
+import styled from "styled-components";
+import BackButton from "src/components/BackButton";
 import Layout from "src/components/Layout";
 import projectList from "src/constants/ProjectList";
+
+const BackButtonContainer = styled.div`
+  margin-top: 10px;
+`;
 
 const edit = e => {
   const id = e.target.value;
@@ -48,6 +54,9 @@ function Reference({ date }) {
           </tbody>
         ))}
       </Table>
+      <BackButtonContainer>
+        <BackButton />
+      </BackButtonContainer>
     </Layout>
   );
 }
