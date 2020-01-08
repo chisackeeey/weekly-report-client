@@ -21,8 +21,9 @@ const SubmitButtonContainer = styled.div`
   margin-right: 10px;
 `;
 
-const save = () => {
-  Router.push("/documents/reference");
+const save = e => {
+  const date = e.target.value;
+  Router.push(`/documents/reference?date=${date}`);
 };
 
 function Edit({ value }) {
@@ -158,7 +159,7 @@ function Edit({ value }) {
             </ItemContainer>
           </Table>
           <SubmitButtonContainer>
-            <Button bsStyle='primary' onClick={save}>
+            <Button bsStyle='primary' value={weeklyInfo.date} onClick={save}>
               保存
             </Button>
           </SubmitButtonContainer>

@@ -1,5 +1,3 @@
-import BasicInfo from "src/pages/documents/basicInfo/index";
-
 const basicInfoList = [
   {
     basicInfo: {
