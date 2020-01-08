@@ -21,8 +21,8 @@ const projectList = [
     basicInfo: {
       id: 2,
       name: "キャリアデザインシート",
-      deadline: "2020年3月",
-      leader: "黒川SD",
+      deadline: "2020年1月",
+      leader: "加納SD",
       member: "竹林"
     },
     weeklyInfo: {
@@ -30,9 +30,9 @@ const projectList = [
       date: "2020-01-10",
       condition: "on",
       thisWeekPlan: "色々やる",
-      thisWeekResult: "色々やった",
+      thisWeekResult: "頑張った",
       problem: "",
-      nextWeekPlan: "頑張る"
+      nextWeekPlan: "毎日残業する"
     }
   },
   {
@@ -47,10 +47,10 @@ const projectList = [
       id: 103,
       date: "2020-01-10",
       condition: "on",
-      thisWeekPlan: "色々やる",
-      thisWeekResult: "色々やった",
+      thisWeekPlan: "楽しく",
+      thisWeekResult: "辛かった",
       problem: "",
-      nextWeekPlan: "頑張る"
+      nextWeekPlan: "粘る"
     }
   }
 ];
