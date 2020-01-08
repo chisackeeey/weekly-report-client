@@ -38,7 +38,7 @@ function Home() {
       <FlexForm>
         <CreateButtonContainer>
           <Button bsStyle='link' onClick={create}>
-            新規作成
+            日付追加
           </Button>
         </CreateButtonContainer>
         <Table striped bordered condensed hover>
