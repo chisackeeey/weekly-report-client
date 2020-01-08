@@ -28,8 +28,8 @@ const projectList = [
     weeklyInfo: {
       id: 102,
       date: "2020-01-10",
-      condition: "on",
-      thisWeekPlan: "色々やる",
+      condition: "B1",
+      thisWeekPlan: "早く帰る",
       thisWeekResult: "頑張った",
       problem: "",
       nextWeekPlan: "毎日残業する"
