@@ -21,6 +21,10 @@ const SubmitButtonContainer = styled.div`
   margin-right: 10px;
 `;
 
+const save = () => {
+  Router.push("/documents/reference");
+};
+
 function Edit({ value }) {
   const [projectId, setProjectId] = useState(1);
   const [basicInfo, setBasicInfo] = useState(null);
@@ -154,7 +158,9 @@ function Edit({ value }) {
             </ItemContainer>
           </Table>
           <SubmitButtonContainer>
-            <Button bsStyle='primary'>保存</Button>
+            <Button bsStyle='primary' onClick={save}>
+              保存
+            </Button>
           </SubmitButtonContainer>
           <BackButton />
         </FlexForm>
