@@ -21,10 +21,6 @@ const SubmitButtonContainer = styled.div`
   margin-right: 10px;
 `;
 
-const BackButtonContainer = styled.div`
-  margin-top: 10px;
-`;
-
 function Edit({ value }) {
   const [projectId, setProjectId] = useState(1);
   const [basicInfo, setBasicInfo] = useState(null);
@@ -111,9 +107,7 @@ function Edit({ value }) {
           <SubmitButtonContainer>
             <Button bsStyle='primary'>保存</Button>
           </SubmitButtonContainer>
-          <BackButtonContainer>
-            <BackButton />
-          </BackButtonContainer>
+          <BackButton />
         </FlexForm>
       )}
     </Layout>
