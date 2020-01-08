@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
+import useForm from "react-hook-form/dist/react-hook-form";
+import styled from "styled-components";
 import Router from "next/router";
 import _ from "lodash";
 import BackToTopButton from "src/components/BackToTopButton";
 import Layout from "src/components/Layout";
 import importBasicInfoList from "src/constants/BasicInfoList";
+
+const FlexForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SubmitButtonContainer = styled.div`
+  align-self: flex-end;
+`;
 
 const edit = e => {
   const id = e.target.value;
@@ -12,6 +23,12 @@ const edit = e => {
 };
 
 function BasicInfo() {
+  const [name, setName] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [leader, setLeader] = useState("");
+  const [member, setMember] = useState("");
+
+  const { register, handleSubmit } = useForm();
   const [basicInfoList, setBasicInfoList] = useState(importBasicInfoList);
 
   function close(e) {
@@ -34,101 +51,149 @@ function BasicInfo() {
     setBasicInfoList(list);
   }
 
+  const create = () => {
+    const list = _.cloneDeep(basicInfoList);
+    const projectId =
+      basicInfoList.reduce((a, b) => (a.projectId > b.projectId ? a : b))
+        .basicInfo.projectId + 1;
+    console.log(projectId);
+    list.push({
+      basicInfo: {
+        projectId: projectId,
+        name: name,
+        deadline: deadline,
+        leader: leader,
+        member: member,
+        status: "open"
+      }
+    });
+    console.log(list);
+    setBasicInfoList(list);
+  };
+
   return (
     <Layout>
-      <h2>基本情報編集</h2>
-      <Table striped bordered condensed hover>
-        <thead>
-          <tr>
-            <th>案件</th>
-            <th>リリース期限</th>
-            <th>担当役席</th>
-            <th>メンバー</th>
-            <th>案件ステータス</th>
-            <th>編集</th>
-            <th>ステータス変更</th>
-          </tr>
-        </thead>
-        {basicInfoList.map(({ basicInfo }) => (
-          <tbody key={basicInfo.projectId}>
+      <FlexForm onSubmit={handleSubmit(create)}>
+        <h2>案件登録</h2>
+        <Table striped bordered condensed hover>
+          <thead>
             <tr>
-              <td>{basicInfo.name}</td>
-              <td>{basicInfo.deadline}</td>
-              <td>{basicInfo.leader}</td>
-              <td>{basicInfo.member}</td>
-              <td>{basicInfo.status}</td>
+              <th>案件</th>
+              <th>リリース期限</th>
+              <th>担当役席</th>
+              <th>メンバー</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
               <td>
-                <Button
-                  bsStyle='link'
-                  value={basicInfo.projectId}
-                  onClick={edit}
-                >
-                  編集
-                </Button>
+                <FormControl
+                  componentClass='textarea'
+                  id='name'
+                  name='name'
+                  value={name}
+                  inputRef={register}
+                  onChange={e => setName(e.target.value)}
+                />
               </td>
               <td>
-                {basicInfo.status === "open" && (
-                  <Button
-                    bsStyle='danger'
-                    id={basicInfo.projectId}
-                    onClick={close}
-                  >
-                    close
-                  </Button>
-                )}
-                {basicInfo.status === "close" && (
-                  <Button
-                    bsStyle='primary'
-                    id={basicInfo.projectId}
-                    onClick={open}
-                  >
-                    open
-                  </Button>
-                )}
+                <FormControl
+                  componentClass='textarea'
+                  id='deadline'
+                  name='deadline'
+                  value={deadline}
+                  inputRef={register}
+                  onChange={e => setDeadline(e.target.value)}
+                />
+              </td>
+              <td>
+                <FormControl
+                  componentClass='textarea'
+                  id='leader'
+                  name='leader'
+                  value={leader}
+                  inputRef={register}
+                  onChange={e => setLeader(e.target.value)}
+                />
+              </td>
+              <td>
+                <FormControl
+                  componentClass='textarea'
+                  id='member'
+                  name='member'
+                  value={member}
+                  inputRef={register}
+                  onChange={e => setMember(e.target.value)}
+                />
               </td>
             </tr>
           </tbody>
-        ))}
-      </Table>
-      <Table striped bordered condensed hover>
-        <thead>
-          <tr>
-            <th>案件</th>
-            <th>リリース期限</th>
-            <th>担当役席</th>
-            <th>メンバー</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <FormControl componentClass='textarea' id='name' name='name' />
-            </td>
-            <td>
-              <FormControl
-                componentClass='textarea'
-                id='deadline'
-                name='deadline'
-              />
-            </td>
-            <td>
-              <FormControl
-                componentClass='textarea'
-                id='leader'
-                name='leader'
-              />
-            </td>
-            <td>
-              <FormControl
-                componentClass='textarea'
-                id='member'
-                name='member'
-              />
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-      <BackToTopButton />
+        </Table>
+        <SubmitButtonContainer>
+          <Button
+            bsStyle='success'
+            type='submit'
+            disabled={!name || !deadline || !leader || !member}
+          >
+            登録
+          </Button>
+        </SubmitButtonContainer>
+        <h2>案件一覧</h2>
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>案件</th>
+              <th>リリース期限</th>
+              <th>担当役席</th>
+              <th>メンバー</th>
+              <th>案件ステータス</th>
+              <th>編集</th>
+              <th>ステータス変更</th>
+            </tr>
+          </thead>
+          {basicInfoList.map(({ basicInfo }) => (
+            <tbody key={basicInfo.projectId}>
+              <tr>
+                <td>{basicInfo.name}</td>
+                <td>{basicInfo.deadline}</td>
+                <td>{basicInfo.leader}</td>
+                <td>{basicInfo.member}</td>
+                <td>{basicInfo.status}</td>
+                <td>
+                  <Button
+                    bsStyle='link'
+                    value={basicInfo.projectId}
+                    onClick={edit}
+                  >
+                    編集
+                  </Button>
+                </td>
+                <td>
+                  {basicInfo.status === "open" && (
+                    <Button
+                      bsStyle='danger'
+                      id={basicInfo.projectId}
+                      onClick={close}
+                    >
+                      close
+                    </Button>
+                  )}
+                  {basicInfo.status === "close" && (
+                    <Button
+                      bsStyle='primary'
+                      id={basicInfo.projectId}
+                      onClick={open}
+                    >
+                      open
+                    </Button>
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </Table>
+        <BackToTopButton />
+      </FlexForm>
     </Layout>
   );
 }
