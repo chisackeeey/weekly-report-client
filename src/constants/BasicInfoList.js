@@ -5,7 +5,8 @@ const basicInfoList = [
       name: "総合評定",
       deadline: "2020年3月",
       leader: "黒川SD",
-      member: "竹林"
+      member: "竹林",
+      status: "open"
     }
   },
   {
@@ -14,7 +15,8 @@ const basicInfoList = [
       name: "キャリアデザインシート",
       deadline: "2020年3月",
       leader: "黒川SD",
-      member: "竹林"
+      member: "竹林",
+      status: "open"
     }
   },
   {
@@ -23,7 +25,8 @@ const basicInfoList = [
       name: "リスク管理確認ツール",
       deadline: "2020年3月",
       leader: "黒川SD",
-      member: "高橋"
+      member: "高橋",
+      status: "close"
     }
   }
 ];

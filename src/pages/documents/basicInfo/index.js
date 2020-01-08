@@ -20,7 +20,9 @@ function BasicInfo() {
             <th>リリース期限</th>
             <th>担当役席</th>
             <th>メンバー</th>
+            <th>案件ステータス</th>
             <th>編集</th>
+            <th>ステータス変更</th>
           </tr>
         </thead>
         {basicInfoList.map(({ basicInfo }) => (
@@ -30,6 +32,7 @@ function BasicInfo() {
               <td>{basicInfo.deadline}</td>
               <td>{basicInfo.leader}</td>
               <td>{basicInfo.member}</td>
+              <td>{basicInfo.status}</td>
               <td>
                 <Button
                   bsStyle='link'
@@ -38,6 +41,13 @@ function BasicInfo() {
                 >
                   編集
                 </Button>
+              </td>
+              <td>
+                {basicInfo.status === "open" && (
+                  <Button bsStyle='danger' onClick={}>
+                    close
+                  </Button>
+                )}
               </td>
             </tr>
           </tbody>
