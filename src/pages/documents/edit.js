@@ -35,7 +35,6 @@ function Edit({ value }) {
   useEffect(() => {
     if (projectId > 0) {
       projectList.map(({ basicInfo, weeklyInfo }) => {
-        console.log(projectId);
         if (weeklyInfo.id === projectId) {
           setBasicInfo(basicInfo);
           setWeeklyInfo(weeklyInfo);
