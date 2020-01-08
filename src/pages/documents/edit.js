@@ -26,16 +26,16 @@ const save = e => {
   Router.push(`/documents/reference?date=${date}`);
 };
 
-function Edit({ value }) {
+function Edit({ id, date }) {
   const [projectId, setProjectId] = useState(1);
   const [basicInfo, setBasicInfo] = useState(null);
   const [weeklyInfo, setWeeklyInfo] = useState(null);
 
   useEffect(() => {
-    if (value) {
-      setProjectId(Number(value));
+    if (id) {
+      setProjectId(Number(id));
     }
-  }, [value]);
+  }, [id]);
 
   useEffect(() => {
     if (projectId > 0) {
@@ -61,7 +61,7 @@ function Edit({ value }) {
             <ItemContainer>
               <tr>
                 <td>日付</td>
-                <td>{weeklyInfo.date}</td>
+                <td>{date}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
@@ -170,6 +170,6 @@ function Edit({ value }) {
   );
 }
 
-Edit.getInitialProps = ({ query }) => ({ value: query.id });
+Edit.getInitialProps = ({ query }) => ({ id: query.id, date: query.date });
 
 export default Edit;

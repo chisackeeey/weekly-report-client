@@ -5,8 +5,9 @@ import Layout from "src/components/Layout";
 import projectList from "src/constants/ProjectList";
 
 const edit = e => {
-  const id = e.target.value;
-  Router.push(`/documents/edit?id=${id}`);
+  const id = e.target.id;
+  const date = e.target.value;
+  Router.push(`/documents/edit?id=${id}&date=${date}`);
 };
 
 function Reference({ date }) {
@@ -41,7 +42,12 @@ function Reference({ date }) {
               <td>{weeklyInfo.problem}</td>
               <td>{weeklyInfo.nextWeekPlan}</td>
               <td>
-                <Button bsStyle='link' value={weeklyInfo.id} onClick={edit}>
+                <Button
+                  bsStyle='link'
+                  id={weeklyInfo.id}
+                  value={date}
+                  onClick={edit}
+                >
                   編集
                 </Button>
               </td>

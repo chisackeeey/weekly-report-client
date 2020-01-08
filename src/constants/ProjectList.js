@@ -27,7 +27,7 @@ const projectList = [
     },
     weeklyInfo: {
       id: 102,
-      date: "2020-01-17",
+      date: "2020-01-10",
       condition: "on",
       thisWeekPlan: "色々やる",
       thisWeekResult: "色々やった",
@@ -45,7 +45,7 @@ const projectList = [
     },
     weeklyInfo: {
       id: 103,
-      date: "2020-01-24",
+      date: "2020-01-10",
       condition: "on",
       thisWeekPlan: "色々やる",
       thisWeekResult: "色々やった",
