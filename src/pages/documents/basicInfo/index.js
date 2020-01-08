@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import useForm from "react-hook-form/dist/react-hook-form";
 import styled from "styled-components";
@@ -17,11 +17,6 @@ const SubmitButtonContainer = styled.div`
   align-self: flex-end;
 `;
 
-const edit = e => {
-  const id = e.target.value;
-  Router.push(`/documents/basicInfo/edit?id=${id}`);
-};
-
 function BasicInfo() {
   const [name, setName] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -30,6 +25,11 @@ function BasicInfo() {
 
   const { register, handleSubmit } = useForm();
   const [basicInfoList, setBasicInfoList] = useState(importBasicInfoList);
+
+  function edit(e) {
+    const id = e.target.value;
+    Router.push(`/documents/basicInfo/edit?id=${id}`);
+  }
 
   function close(e) {
     const list = _.cloneDeep(basicInfoList);

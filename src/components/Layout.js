@@ -8,7 +8,7 @@ function Layout({ children }) {
     <>
       <Head>
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
-        <title>週次進捗回</title>
+        <title>週次進捗会</title>
       </Head>
       <Header />
       <Grid>{children}</Grid>
