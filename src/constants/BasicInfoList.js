@@ -13,8 +13,8 @@ const basicInfoList = [
     basicInfo: {
       projectId: 2,
       name: "キャリアデザインシート",
-      deadline: "2020年3月",
-      leader: "黒川SD",
+      deadline: "2020年1月",
+      leader: "加納SD",
       member: "竹林",
       status: "open"
     }
