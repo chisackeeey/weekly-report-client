@@ -3,6 +3,11 @@ import Router from "next/router";
 import Layout from "src/components/Layout";
 import basicInfoList from "src/constants/BasicInfoList";
 
+const edit = e => {
+  const id = e.target.value;
+  Router.push(`/documents/basicInfo/edit?id=${id}`);
+};
+
 function BasicInfo() {
   return (
     <Layout>
@@ -14,15 +19,25 @@ function BasicInfo() {
             <th>リリース期限</th>
             <th>担当役席</th>
             <th>メンバー</th>
+            <th>編集</th>
           </tr>
         </thead>
-        {basicInfoList.map(({ projectId, name, deadline, leader, member }) => (
-          <tbody key={projectId}>
+        {basicInfoList.map(({ basicInfo }) => (
+          <tbody key={basicInfo.projectId}>
             <tr>
-              <td>{name}</td>
-              <td>{deadline}</td>
-              <td>{leader}</td>
-              <td>{member}</td>
+              <td>{basicInfo.name}</td>
+              <td>{basicInfo.deadline}</td>
+              <td>{basicInfo.leader}</td>
+              <td>{basicInfo.member}</td>
+              <td>
+                <Button
+                  bsStyle='link'
+                  value={basicInfo.projectId}
+                  onClick={edit}
+                >
+                  編集
+                </Button>
+              </td>
             </tr>
           </tbody>
         ))}
