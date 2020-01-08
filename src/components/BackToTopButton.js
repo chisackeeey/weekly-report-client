@@ -7,10 +7,10 @@ const BackButtonContainer = styled.div`
 `;
 
 const back = () => {
-  Router.back();
+  Router.push("/");
 };
 
-function BackButton() {
+function BackToTopButton() {
   return (
     <BackButtonContainer>
       <Button bsStyle='link' onClick={back}>
@@ -20,4 +20,4 @@ function BackButton() {
   );
 }
 
-export default BackButton;
+export default BackToTopButton;

@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
-import BackButton from "src/components/BackButton";
+import BackToTopButton from "src/components/BackToTopButton";
 import Layout from "src/components/Layout";
 import basicInfoList from "src/constants/BasicInfoList";
 
@@ -43,7 +43,7 @@ function BasicInfo() {
           </tbody>
         ))}
       </Table>
-      <BackButton />
+      <BackToTopButton />
     </Layout>
   );
 }
