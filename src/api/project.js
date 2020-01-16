@@ -25,6 +25,6 @@ async function getList() {
 
 async function create() {}
 
-async function editInfo() {}
+async function edit() {}
 
 async function changeStatus() {}

@@ -25,6 +25,6 @@ async function getList() {
 
 async function create() {}
 
-async function edit() {}
+async function editReport() {}
 
 async function editMemo() {}
