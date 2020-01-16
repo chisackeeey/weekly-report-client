@@ -14,7 +14,8 @@ const projectList = [
       thisWeekPlan: "色々やる",
       thisWeekResult: "色々やった",
       problem: "",
-      nextWeekPlan: "頑張る"
+      nextWeekPlan: "頑張る",
+      memo: ""
     }
   },
   {
@@ -32,7 +33,8 @@ const projectList = [
       thisWeekPlan: "早く帰る",
       thisWeekResult: "頑張った",
       problem: "",
-      nextWeekPlan: "毎日残業する"
+      nextWeekPlan: "毎日残業する",
+      memo: ""
     }
   },
   {
@@ -50,7 +52,8 @@ const projectList = [
       thisWeekPlan: "楽しく",
       thisWeekResult: "辛かった",
       problem: "",
-      nextWeekPlan: "粘る"
+      nextWeekPlan: "粘る",
+      memo: ""
     }
   }
 ];
