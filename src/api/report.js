@@ -13,7 +13,7 @@ async function getDate() {
   return json;
 }
 
-async function getReport() {
+async function get() {
   const res = await fetch(`${apiUrl}/api/`, {
     method: "GET",
     headers
@@ -23,7 +23,17 @@ async function getReport() {
   return json;
 }
 
-async function editReport() {}
+async function getList() {
+  const res = await fetch(`${apiUrl}/api/`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
+
+async function edit() {}
 
 async function editMemo() {}
 

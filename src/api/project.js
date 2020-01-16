@@ -3,7 +3,7 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-async function getProject() {
+async function get() {
   const res = await fetch(`${apiUrl}/api/`, {
     method: "GET",
     headers
@@ -13,8 +13,18 @@ async function getProject() {
   return json;
 }
 
-async function registerProject() {}
+async function getList() {
+  const res = await fetch(`${apiUrl}/api/`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
 
-async function editProjectInfo() {}
+async function create() {}
 
-async function changeProjectStatus() {}
+async function editInfo() {}
+
+async function changeStatus() {}
