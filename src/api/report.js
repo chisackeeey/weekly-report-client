@@ -37,4 +37,4 @@ async function edit() {}
 
 async function editMemo() {}
 
-async function addDate() {}
+async function createDate() {}
