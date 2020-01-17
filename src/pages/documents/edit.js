@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Router from "next/router";
 import BackButton from "src/components/BackButton";
 import Layout from "src/components/Layout";
-import projectList from "src/constants/ProjectList";
+import useReport from "src/hook/useReport";
 
 const FlexForm = styled.form`
   display: flex;
@@ -27,41 +27,42 @@ const save = e => {
 };
 
 function Edit({ id, date }) {
-  const [projectId, setProjectId] = useState(1);
+  const [projectId, setProjectId] = useState(null);
   const [basicInfo, setBasicInfo] = useState(null);
   const [weeklyInfo, setWeeklyInfo] = useState(null);
 
-  useEffect(() => {
-    if (id) {
-      setProjectId(Number(id));
-    }
-  }, [id]);
+  const { report, find } = useReport();
 
   useEffect(() => {
-    if (projectId > 0) {
-      projectList.map(({ basicInfo, weeklyInfo }) => {
+    setProjectId(Number(id));
+    if (date) {
+      find(date);
+    }
+  }, [id, date]);
+
+  useEffect(() => {
+    if (report) {
+      report.info.map(({ basicInfo, weeklyInfo }) => {
         if (weeklyInfo.id === projectId) {
           setBasicInfo(basicInfo);
           setWeeklyInfo(weeklyInfo);
         }
       });
-    } else {
-      Router.push("/");
     }
-  }, [projectId]);
+  }, [report]);
 
   return (
     <Layout>
-      <h2>報告内容編集</h2>
       {basicInfo === null || weeklyInfo === null ? (
         <p>Loading...</p>
       ) : (
         <FlexForm>
+          <h2>報告内容編集</h2>
           <Table striped bordered condensed hover>
             <ItemContainer>
               <tr>
                 <td>日付</td>
-                <td>{date}</td>
+                <td>{report.date}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
