@@ -40,23 +40,14 @@ function BasicInfo() {
     changeStatus(e.target.id);
   }
 
-  // const create = () => {
-  //   const list = _.cloneDeep(basicInfoList);
-  //   const projectId =
-  //     basicInfoList.reduce((a, b) => (a.projectId > b.projectId ? a : b))
-  //       .basicInfo.projectId + 1;
-  //   list.push({
-  //     basicInfo: {
-  //       projectId: projectId,
-  //       name: name,
-  //       deadline: deadline,
-  //       leader: leader,
-  //       member: member,
-  //       status: "open"
-  //     }
-  //   });
-  //   setBasicInfoList(list);
-  // };
+  const create = () => {
+    create({
+      name,
+      deadline,
+      leader,
+      member
+    });
+  };
 
   return (
     <Layout>

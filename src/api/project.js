@@ -28,7 +28,7 @@ async function getList() {
   return basicInfoList;
 }
 
-async function create() {}
+async function create({ name, deadline, leader, member }) {}
 
 async function edit() {}
 
