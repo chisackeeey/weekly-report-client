@@ -6,7 +6,7 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-async function get() {
+async function get(date) {
   // const res = await fetch(`${apiUrl}/api/`, {
   //   method: "GET",
   //   headers

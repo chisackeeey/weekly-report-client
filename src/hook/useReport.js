@@ -6,9 +6,9 @@ function useReport() {
   const [reportList, setReportList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const find = async () => {
+  const find = async date => {
     setLoading(true);
-    setReport(await reportApi.get());
+    setReport(await reportApi.get(date));
     setLoading(false);
   };
 

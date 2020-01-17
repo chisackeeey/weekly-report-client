@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import useForm from "react-hook-form/dist/react-hook-form";
 import Router from "next/router";
@@ -18,8 +19,12 @@ const SubmitButtonContainer = styled.div`
 `;
 
 function Reference({ date }) {
-  const { report } = useReport();
+  const { report, find } = useReport();
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    find(date);
+  }, [date]);
 
   const edit = e => {
     const id = e.target.id;
@@ -39,7 +44,7 @@ function Reference({ date }) {
         <p>...loading</p>
       ) : (
         <FlexForm onSubmit={handleSubmit(save)}>
-          <h2>{date}の週次進捗会</h2>
+          <h2>{report.date}の週次進捗会</h2>
           <Table striped bordered condensed hover>
             <thead>
               <tr>
