@@ -19,7 +19,7 @@ const SubmitButtonContainer = styled.div`
 `;
 
 function Reference({ date }) {
-  const { report, find } = useReport();
+  const { report, find, editMemo } = useReport();
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
@@ -36,6 +36,12 @@ function Reference({ date }) {
       const memo = data[String(basicInfo.id)];
       weeklyInfo.memo = memo;
     });
+    try {
+      await editMemo({ report });
+    } catch (e) {
+      alert(e.toString());
+    }
+    Router.push(`/documents/reference?date=${date}`);
   };
 
   return (
