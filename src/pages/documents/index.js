@@ -22,19 +22,19 @@ const CreateButtonContainer = styled.div`
 `;
 
 function Home() {
-  const { reportList, findList } = useReport();
+  const { reportList, findList, create } = useReport();
 
   useEffect(() => {
     findList();
   }, []);
 
-  function onCreate() {
-    const list = _.cloneDeep(dateList);
-    const newDate = dayjs(dateList.reduce((a, b) => (a.id > b.id ? a : b)).date)
-      .add(7, "day")
-      .format("YYYY-MM-DD");
-    list.push({ date: newDate });
-    setDateList(list);
+  async function onCreate() {
+    try {
+      await create();
+      Router.push("/documents");
+    } catch (e) {
+      alert(e.toString());
+    }
   }
 
   return (
