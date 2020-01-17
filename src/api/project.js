@@ -32,7 +32,7 @@ async function create() {}
 
 async function edit() {}
 
-async function changeStatus() {}
+async function changeStatus(projectId) {}
 
 export default {
   get,

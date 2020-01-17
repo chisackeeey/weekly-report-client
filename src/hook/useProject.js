@@ -30,9 +30,9 @@ function useProject() {
     setLoading(false);
   };
 
-  const changeStatus = async () => {
+  const changeStatus = async projectId => {
     setLoading(true);
-    await projectApi.changeStatus();
+    await projectApi.changeStatus(projectId);
     setLoading(false);
   };
 

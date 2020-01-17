@@ -36,25 +36,9 @@ function BasicInfo() {
     Router.push(`/documents/basicInfo/edit?id=${id}`);
   }
 
-  // function close(e) {
-  //   const list = _.cloneDeep(basicInfoList);
-  //   list.map(({ basicInfo }) => {
-  //     if (basicInfo.projectId == e.target.id) {
-  //       basicInfo.status = "close";
-  //     }
-  //   });
-  //   setBasicInfoList(list);
-  // }
-
-  // function open(e) {
-  //   const list = _.cloneDeep(basicInfoList);
-  //   list.map(({ basicInfo }) => {
-  //     if (basicInfo.projectId == e.target.id) {
-  //       basicInfo.status = "open";
-  //     }
-  //   });
-  //   setBasicInfoList(list);
-  // }
+  function change(e) {
+    changeStatus(e.target.id);
+  }
 
   // const create = () => {
   //   const list = _.cloneDeep(basicInfoList);
@@ -173,12 +157,20 @@ function BasicInfo() {
                     </td>
                     <td>
                       {status === "open" && (
-                        <Button bsStyle='danger' id={projectId} onClick={close}>
+                        <Button
+                          bsStyle='danger'
+                          id={projectId}
+                          onClick={change}
+                        >
                           close
                         </Button>
                       )}
                       {status === "close" && (
-                        <Button bsStyle='primary' id={projectId} onClick={open}>
+                        <Button
+                          bsStyle='primary'
+                          id={projectId}
+                          onClick={change}
+                        >
                           open
                         </Button>
                       )}
