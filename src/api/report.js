@@ -1,4 +1,5 @@
-import reportList from "src/constants/ProjectList";
+import report from "src/constants/Report";
+import reportList from "src/constants/ReportList";
 
 const { apiUrl } = "http://170.49.27.111:9080";
 const headers = {
@@ -6,13 +7,13 @@ const headers = {
 };
 
 async function get() {
-  const res = await fetch(`${apiUrl}/api/`, {
-    method: "GET",
-    headers
-  });
-  const json = await res.json();
-  if (!res.ok) throw new Error(json.message);
-  return json;
+  // const res = await fetch(`${apiUrl}/api/`, {
+  //   method: "GET",
+  //   headers
+  // });
+  // const json = await res.json();
+  // if (!res.ok) throw new Error(json.message);
+  return report;
 }
 
 async function getList() {
