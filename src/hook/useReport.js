@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reportApi from "src/api/report";
 
 function useReport() {
   const [report, setReport] = useState(null);
-  const [reportList, setReportList] = useState(null);
+  const [reportList, setReportList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const find = async () => {
@@ -35,6 +35,11 @@ function useReport() {
     await reportApi.editMemo();
     setLoading(false);
   };
+
+  useEffect(() => {
+    find();
+    findList();
+  }, []);
 
   return {
     report,
