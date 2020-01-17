@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import reportApi from "src/api/report";
 
 function useReport() {
@@ -35,11 +35,6 @@ function useReport() {
     await reportApi.editMemo();
     setLoading(false);
   };
-
-  useEffect(() => {
-    find();
-    findList();
-  }, []);
 
   return {
     report,

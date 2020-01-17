@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
 import styled from "styled-components";
@@ -22,7 +22,11 @@ const CreateButtonContainer = styled.div`
 `;
 
 function Home() {
-  const { reportList } = useReport();
+  const { reportList, findList } = useReport();
+
+  useEffect(() => {
+    findList();
+  }, []);
 
   function onCreate() {
     const list = _.cloneDeep(dateList);
