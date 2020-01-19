@@ -40,7 +40,7 @@ function BasicInfo() {
     changeStatus(e.target.id);
   }
 
-  const create = () => {
+  const onCreate = () => {
     create({
       name,
       deadline,
@@ -54,7 +54,7 @@ function BasicInfo() {
       {projectList === null ? (
         <p>...Loading</p>
       ) : (
-        <FlexForm onSubmit={handleSubmit(create)}>
+        <FlexForm onSubmit={handleSubmit(onCreate)}>
           <h2>案件登録</h2>
           <Table striped bordered condensed hover>
             <thead>
@@ -69,9 +69,9 @@ function BasicInfo() {
               <tr>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='name'
-                    name='name'
+                    componentClass="textarea"
+                    id="name"
+                    name="name"
                     value={name}
                     inputRef={register}
                     onChange={e => setName(e.target.value)}
@@ -79,9 +79,9 @@ function BasicInfo() {
                 </td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='deadline'
-                    name='deadline'
+                    componentClass="textarea"
+                    id="deadline"
+                    name="deadline"
                     value={deadline}
                     inputRef={register}
                     onChange={e => setDeadline(e.target.value)}
@@ -89,9 +89,9 @@ function BasicInfo() {
                 </td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='leader'
-                    name='leader'
+                    componentClass="textarea"
+                    id="leader"
+                    name="leader"
                     value={leader}
                     inputRef={register}
                     onChange={e => setLeader(e.target.value)}
@@ -99,9 +99,9 @@ function BasicInfo() {
                 </td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='member'
-                    name='member'
+                    componentClass="textarea"
+                    id="member"
+                    name="member"
                     value={member}
                     inputRef={register}
                     onChange={e => setMember(e.target.value)}
@@ -112,8 +112,8 @@ function BasicInfo() {
           </Table>
           <SubmitButtonContainer>
             <Button
-              bsStyle='success'
-              type='submit'
+              bsStyle="success"
+              type="submit"
               disabled={!name || !deadline || !leader || !member}
             >
               登録
@@ -142,14 +142,14 @@ function BasicInfo() {
                     <td>{member}</td>
                     <td>{status}</td>
                     <td>
-                      <Button bsStyle='link' value={projectId} onClick={edit}>
+                      <Button bsStyle="link" value={projectId} onClick={edit}>
                         編集
                       </Button>
                     </td>
                     <td>
                       {status === "open" && (
                         <Button
-                          bsStyle='danger'
+                          bsStyle="danger"
                           id={projectId}
                           onClick={change}
                         >
@@ -158,7 +158,7 @@ function BasicInfo() {
                       )}
                       {status === "close" && (
                         <Button
-                          bsStyle='primary'
+                          bsStyle="primary"
                           id={projectId}
                           onClick={change}
                         >
