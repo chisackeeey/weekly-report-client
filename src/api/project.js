@@ -1,7 +1,6 @@
-import basicInfoList from "src/constants/BasicInfoList";
 import basicInfo from "src/constants/BasicInfo";
 
-const { apiUrl } = "http://170.49.27.111:9080";
+const apiUrl = "http://localhost:8080/api";
 const headers = {
   "Content-Type": "application/json"
 };
@@ -18,14 +17,14 @@ async function get() {
 }
 
 async function getList() {
-  // const res = await fetch(`${apiUrl}/api/`, {
-  //   method: "GET",
-  //   headers
-  // });
-  // const json = await res.json();
-  // if (!res.ok) throw new Error(json.message);
-  // return json;
-  return basicInfoList;
+  console.log(`${apiUrl}/project`);
+  const res = await fetch(`${apiUrl}/project`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
 async function create({ name, deadline, leader, member }) {}
