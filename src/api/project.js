@@ -30,7 +30,7 @@ async function getList() {
 
 async function create({ name, deadline, leader, member }) {}
 
-async function edit() {}
+async function editInfo(data) {}
 
 async function changeStatus(projectId) {}
 
@@ -38,6 +38,6 @@ export default {
   get,
   getList,
   create,
-  edit,
+  editInfo,
   changeStatus
 };

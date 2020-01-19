@@ -24,9 +24,9 @@ function useProject() {
     setLoading(false);
   };
 
-  const editInfo = async () => {
+  const editInfo = async data => {
     setLoading(true);
-    await projectApi.editInfo();
+    await projectApi.editInfo(data);
     setLoading(false);
   };
 

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import styled from "styled-components";
+import useForm from "react-hook-form/dist/react-hook-form";
 import Router from "next/router";
 import BackButton from "src/components/BackButton";
 import Layout from "src/components/Layout";
-import basicInfoList from "src/constants/BasicInfoList";
+import useProject from "src/hook/useProject";
 
 const FlexForm = styled.form`
   display: flex;
@@ -21,49 +22,53 @@ const SubmitButtonContainer = styled.div`
   margin-right: 10px;
 `;
 
-const save = () => {
-  Router.push("/documents/basicInfo");
-};
+function Edit({ id }) {
+  const { project, find, editInfo } = useProject();
 
-function Edit({ value }) {
-  const [projectId, setProjectId] = useState(1);
+  const [projectId, setProjectId] = useState(id);
   const [basicInfo, setBasicInfo] = useState(null);
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    if (value) {
-      setProjectId(Number(value));
-    }
-  }, [value]);
-
-  useEffect(() => {
-    if (projectId > 0) {
-      basicInfoList.map(({ basicInfo }) => {
-        if (basicInfo.projectId === projectId) {
-          setBasicInfo(basicInfo);
-        }
-      });
-    } else {
-      Router.push("/documents/basicInfo");
+    setProjectId(Number(id));
+    if (projectId) {
+      find();
     }
   }, [projectId]);
 
+  useEffect(() => {
+    if (project) {
+      setBasicInfo(project);
+    }
+  }, [project]);
+
+  async function save(data) {
+    try {
+      editInfo(data);
+      Router.push("/documents/basicInfo");
+    } catch (e) {
+      alert(e.toString());
+    }
+  }
+
   return (
     <Layout>
-      <h2>基本情報編集</h2>
       {basicInfo === null ? (
         <p>Loading...</p>
       ) : (
-        <FlexForm>
+        <FlexForm onSubmit={handleSubmit(save)}>
+          <h2>基本情報編集</h2>
           <Table striped bordered condensed hover>
             <ItemContainer>
               <tr>
                 <td>案件</td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='name'
-                    name='name'
+                    componentClass="textarea"
+                    id="name"
+                    name="name"
                     defaultValue={basicInfo.name}
+                    inputRef={register}
                   />
                 </td>
               </tr>
@@ -73,10 +78,11 @@ function Edit({ value }) {
                 <td>リリース期限</td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='deadline'
-                    name='deadline'
+                    componentClass="textarea"
+                    id="deadline"
+                    name="deadline"
                     defaultValue={basicInfo.deadline}
+                    inputRef={register}
                   />
                 </td>
               </tr>
@@ -86,10 +92,11 @@ function Edit({ value }) {
                 <td>担当役席</td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='leader'
-                    name='leader'
+                    componentClass="textarea"
+                    id="leader"
+                    name="leader"
                     defaultValue={basicInfo.leader}
+                    inputRef={register}
                   />
                 </td>
               </tr>
@@ -99,17 +106,18 @@ function Edit({ value }) {
                 <td>メンバー</td>
                 <td>
                   <FormControl
-                    componentClass='textarea'
-                    id='member'
-                    name='member'
+                    componentClass="textarea"
+                    id="member"
+                    name="member"
                     defaultValue={basicInfo.member}
+                    inputRef={register}
                   />
                 </td>
               </tr>
             </ItemContainer>
           </Table>
           <SubmitButtonContainer>
-            <Button bsStyle='primary' onClick={save}>
+            <Button bsStyle="primary" type="submit">
               保存
             </Button>
           </SubmitButtonContainer>
@@ -120,6 +128,6 @@ function Edit({ value }) {
   );
 }
 
-Edit.getInitialProps = ({ query }) => ({ value: query.id });
+Edit.getInitialProps = ({ query }) => ({ id: query.id });
 
 export default Edit;
