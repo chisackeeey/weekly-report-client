@@ -132,10 +132,10 @@ function BasicInfo() {
                 <th>ステータス変更</th>
               </tr>
             </thead>
-            {projectList.map(
-              ({ projectId, name, deadline, leader, member, status }) => (
-                <tbody key={projectId}>
-                  <tr>
+            <tbody>
+              {projectList.map(
+                ({ projectId, name, deadline, leader, member, status }) => (
+                  <tr key={projectId}>
                     <td>{name}</td>
                     <td>{deadline}</td>
                     <td>{leader}</td>
@@ -167,9 +167,9 @@ function BasicInfo() {
                       )}
                     </td>
                   </tr>
-                </tbody>
-              )
-            )}
+                )
+              )}
+            </tbody>
           </Table>
           <BackToTopButton />
         </FlexForm>
