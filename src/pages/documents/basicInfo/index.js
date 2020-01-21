@@ -37,7 +37,8 @@ function BasicInfo() {
 
   const change = async e => {
     try {
-      await changeStatus({ id: e.target.id });
+      const id = e.target.id;
+      await changeStatus(id);
     } catch (e) {
       alert(e.toString());
     }

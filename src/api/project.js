@@ -4,7 +4,7 @@ const headers = {
 };
 
 async function get(id) {
-  const res = await fetch(`${apiUrl}/${id}`, {
+  const res = await fetch(`${apiUrl}?id=${id}`, {
     method: "GET",
     headers
   });
@@ -35,7 +35,7 @@ async function create({ name, deadline, leader, member }) {
 }
 
 async function editInfo({ id, data }) {
-  const res = await fetch(`${apiUrl}/edit/${id}`, {
+  const res = await fetch(`${apiUrl}/edit?id=${id}`, {
     method: "POST",
     headers,
     body: JSON.stringify({
@@ -50,8 +50,9 @@ async function editInfo({ id, data }) {
   return json;
 }
 
-async function changeStatus({ id }) {
-  const res = await fetch(`${apiUrl}/change/${id}`, {
+async function changeStatus(id) {
+  console.log(`${apiUrl}/change?id=${id}`);
+  const res = await fetch(`${apiUrl}/change?id=${id}`, {
     method: "POST",
     headers
   });
