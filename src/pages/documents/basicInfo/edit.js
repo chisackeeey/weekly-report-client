@@ -23,13 +23,15 @@ const SubmitButtonContainer = styled.div`
 `;
 
 function Edit({ id }) {
+  const { register, handleSubmit } = useForm();
   const { project, find, editInfo } = useProject();
 
+  const [projectId, setProjectId] = useState(null);
   const [basicInfo, setBasicInfo] = useState(null);
-  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     if (id) {
+      setProjectId(id);
       find(id);
     }
   }, [id]);
@@ -40,14 +42,14 @@ function Edit({ id }) {
     }
   }, [project]);
 
-  async function save(data) {
+  const save = async data => {
     try {
-      editInfo(data);
+      await editInfo({ id: projectId, data });
       Router.push("/documents/basicInfo");
     } catch (e) {
       alert(e.toString());
     }
-  }
+  };
 
   return (
     <Layout>

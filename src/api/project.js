@@ -36,7 +36,18 @@ async function create({ name, deadline, leader, member }) {
   return json;
 }
 
-async function editInfo(data) {}
+async function editInfo({ id, data }) {
+  const res = await fetch(`${apiUrl}/edit/${id}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      name: data.name,
+      deadline: data.deadline,
+      leader: data.leader,
+      member: data.member
+    })
+  });
+}
 
 async function changeStatus(projectId) {}
 
