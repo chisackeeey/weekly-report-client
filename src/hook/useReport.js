@@ -3,7 +3,7 @@ import reportApi from "src/api/report";
 
 function useReport() {
   const [report, setReport] = useState(null);
-  const [reportList, setReportList] = useState([]);
+  const [reportList, setReportList] = useState(null);
   const [reportDateList, setReportDateList] = useState([]);
   const [loading, setLoading] = useState(false);
 

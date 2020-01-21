@@ -3,6 +3,7 @@ import { Button, FormControl, Table } from "react-bootstrap";
 import useForm from "react-hook-form/dist/react-hook-form";
 import Router from "next/router";
 import styled from "styled-components";
+import dayjs from "dayjs";
 import BackToTopButton from "src/components/BackToTopButton";
 import Layout from "src/components/Layout";
 import useReport from "src/hook/useReport";
@@ -19,11 +20,11 @@ const SubmitButtonContainer = styled.div`
 `;
 
 function Reference({ date }) {
-  const { report, find, editMemo } = useReport();
+  const { reportList, findList, editMemo } = useReport();
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    find(date);
+    findList(dayjs(date).format("YYYY-MM-DD"));
   }, [date]);
 
   const edit = e => {
@@ -46,11 +47,11 @@ function Reference({ date }) {
 
   return (
     <Layout>
-      {report === null ? (
+      {reportList === null ? (
         <p>...loading</p>
       ) : (
         <FlexForm onSubmit={handleSubmit(save)}>
-          <h2>{report.date}の週次進捗会</h2>
+          <h2>{date}の週次進捗会</h2>
           <Table striped bordered condensed hover>
             <thead>
               <tr>
@@ -67,31 +68,30 @@ function Reference({ date }) {
                 <th>編集</th>
               </tr>
             </thead>
-            {report.info.map(({ basicInfo, weeklyInfo }) => (
-              <tbody key={basicInfo.id}>
+            {reportList.map(report => (
+              <tbody key={report.id}>
                 <tr>
-                  <td>{basicInfo.name}</td>
-                  <td>{basicInfo.deadline}</td>
-                  <td>{basicInfo.leader}</td>
-                  <td>{basicInfo.member}</td>
-                  <td>{weeklyInfo.condition}</td>
-                  <td>{weeklyInfo.thisWeekPlan}</td>
-                  <td>{weeklyInfo.thisWeekResult}</td>
-                  <td>{weeklyInfo.problem}</td>
-                  <td>{weeklyInfo.nextWeekPlan}</td>
+                  <td>{report.project.name}</td>
+                  <td>{report.project.deadline}</td>
+                  <td>{report.project.leader}</td>
+                  <td>{report.project.member}</td>
+                  <td>{report.lastWeekCondition}</td>
+                  <td>{report.thisWeekPlan}</td>
+                  <td>{report.thisWeekResult}</td>
+                  <td>{report.problem}</td>
+                  <td>{report.nextWeekPlan}</td>
                   <td>
                     <FormControl
                       componentClass='textarea'
-                      id={String(basicInfo.id)}
-                      name={String(basicInfo.id)}
-                      defaultValue={weeklyInfo.memo}
+                      name={report.id}
+                      defaultValue={report.memo}
                       inputRef={register}
                     />
                   </td>
                   <td>
                     <Button
                       bsStyle='link'
-                      id={weeklyInfo.id}
+                      id={report.id}
                       value={date}
                       onClick={edit}
                     >

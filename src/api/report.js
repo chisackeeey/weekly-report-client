@@ -16,7 +16,7 @@ async function get(date) {
 }
 
 async function getList(date) {
-  const res = await fetch(`${apiUrl}/list/${date}`, {
+  const res = await fetch(`${apiUrl}?date=${date}`, {
     method: "GET",
     headers
   });
@@ -52,6 +52,7 @@ async function editMemo() {}
 export default {
   get,
   getList,
+  getDateList,
   create,
   editReport,
   editMemo
