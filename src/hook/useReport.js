@@ -4,6 +4,7 @@ import reportApi from "src/api/report";
 function useReport() {
   const [report, setReport] = useState(null);
   const [reportList, setReportList] = useState([]);
+  const [reportDateList, setReportDateList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const find = async date => {
@@ -12,9 +13,15 @@ function useReport() {
     setLoading(false);
   };
 
-  const findList = async () => {
+  const findList = async date => {
     setLoading(true);
-    setReportList(await reportApi.getList());
+    setReportList(await reportApi.getList(date));
+    setLoading(false);
+  };
+
+  const findDateList = async () => {
+    setLoading(true);
+    setReportDateList(await reportApi.getDateList());
     setLoading(false);
   };
 
@@ -39,9 +46,11 @@ function useReport() {
   return {
     report,
     reportList,
+    reportDateList,
     loading,
     find,
     findList,
+    findDateList,
     create,
     editReport,
     editMemo

@@ -15,7 +15,17 @@ async function get(date) {
   return report;
 }
 
-async function getList() {
+async function getList(date) {
+  const res = await fetch(`${apiUrl}/list/${date}`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
+
+async function getDateList() {
   const res = await fetch(`${apiUrl}/list/`, {
     method: "GET",
     headers

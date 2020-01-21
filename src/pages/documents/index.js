@@ -21,10 +21,10 @@ const CreateButtonContainer = styled.div`
 `;
 
 function Home() {
-  const { reportList, findList, create } = useReport();
+  const { reportDateList, findDateList, create } = useReport();
 
   useEffect(() => {
-    findList();
+    findDateList();
   });
 
   async function onCreate() {
@@ -50,7 +50,7 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            {reportList.map(({ date }) => (
+            {reportDateList.map(({ date }) => (
               <tr key={date}>
                 <td>
                   <Button bsStyle='link' value={date} onClick={reference}>
