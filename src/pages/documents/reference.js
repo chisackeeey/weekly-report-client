@@ -29,20 +29,7 @@ function Reference({ date }) {
 
   const edit = e => {
     const id = e.target.id;
-    Router.push(`/documents/edit?id=${id}&date=${date}`);
-  };
-
-  const save = async data => {
-    report.info.map(({ basicInfo, weeklyInfo }) => {
-      const memo = data[String(basicInfo.id)];
-      weeklyInfo.memo = memo;
-    });
-    try {
-      await editMemo({ report });
-    } catch (e) {
-      alert(e.toString());
-    }
-    Router.push(`/documents/reference?date=${date}`);
+    Router.push(`/documents/edit?id=${id}`);
   };
 
   return (
@@ -50,7 +37,7 @@ function Reference({ date }) {
       {reportList === null ? (
         <p>...loading</p>
       ) : (
-        <FlexForm onSubmit={handleSubmit(save)}>
+        <FlexForm onSubmit={handleSubmit()}>
           <h2>{date}の週次進捗会</h2>
           <Table striped bordered condensed hover>
             <thead>
@@ -59,7 +46,8 @@ function Reference({ date }) {
                 <th>リリース期限</th>
                 <th>担当役席</th>
                 <th>メンバー</th>
-                <th>進捗状況</th>
+                <th>前週の進捗状況</th>
+                <th>今週の進捗状況</th>
                 <th>今週の予定</th>
                 <th>今週の実績</th>
                 <th>課題</th>
@@ -76,6 +64,7 @@ function Reference({ date }) {
                   <td>{report.project.leader}</td>
                   <td>{report.project.member}</td>
                   <td>{report.lastWeekCondition}</td>
+                  <td>{report.thisWeekCondition}</td>
                   <td>{report.thisWeekPlan}</td>
                   <td>{report.thisWeekResult}</td>
                   <td>{report.problem}</td>
