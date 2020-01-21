@@ -1,6 +1,6 @@
 import basicInfo from "src/constants/BasicInfo";
 
-const apiUrl = "http://localhost:8080/api";
+const apiUrl = "http://localhost:8080/api/project";
 const headers = {
   "Content-Type": "application/json"
 };
@@ -17,8 +17,7 @@ async function get() {
 }
 
 async function getList() {
-  console.log(`${apiUrl}/project`);
-  const res = await fetch(`${apiUrl}/project`, {
+  const res = await fetch(`${apiUrl}/list`, {
     method: "GET",
     headers
   });
@@ -27,7 +26,13 @@ async function getList() {
   return json;
 }
 
-async function create({ name, deadline, leader, member }) {}
+async function create({ name, deadline, leader, member }) {
+  const res = await fetch(`${apiUrl}/new`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ name, deadline, leader, member })
+  });
+}
 
 async function editInfo(data) {}
 

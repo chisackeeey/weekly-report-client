@@ -18,9 +18,9 @@ function useProject() {
     setLoading(false);
   };
 
-  const create = async () => {
+  const create = async ({ name, deadline, leader, member }) => {
     setLoading(true);
-    await projectApi.create();
+    await projectApi.create({ name, deadline, leader, member });
     setLoading(false);
   };
 
