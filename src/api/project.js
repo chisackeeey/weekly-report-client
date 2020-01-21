@@ -32,6 +32,9 @@ async function create({ name, deadline, leader, member }) {
     headers,
     body: JSON.stringify({ name, deadline, leader, member })
   });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
 async function editInfo(data) {}
