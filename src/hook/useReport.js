@@ -18,9 +18,9 @@ function useReport() {
     setLoading(false);
   };
 
-  const create = async ({ name, deadline, leader, member }) => {
+  const create = async () => {
     setLoading(true);
-    await reportApi.create({ name, deadline, leader, member });
+    await reportApi.create();
     setLoading(false);
   };
 

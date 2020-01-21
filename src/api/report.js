@@ -1,5 +1,4 @@
 import report from "src/constants/Report";
-import reportList from "src/constants/ReportList";
 
 const apiUrl = "http://localhost:8080/api/report";
 const headers = {
@@ -17,13 +16,13 @@ async function get(date) {
 }
 
 async function getList() {
-  // const res = await fetch(`${apiUrl}/api/`, {
-  //   method: "GET",
-  //   headers
-  // });
-  // const json = await res.json();
-  // if (!res.ok) throw new Error(json.message);
-  return reportList;
+  const res = await fetch(`${apiUrl}/list/`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
 async function create() {
