@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import Router from "next/router";
 import styled from "styled-components";
-import dayjs from "dayjs";
 import _ from "lodash";
 import Layout from "src/components/Layout";
 import useReport from "src/hook/useReport";
@@ -26,12 +25,11 @@ function Home() {
 
   useEffect(() => {
     findList();
-  }, []);
+  });
 
   async function onCreate() {
     try {
       await create();
-      Router.push("/documents");
     } catch (e) {
       alert(e.toString());
     }
@@ -51,17 +49,17 @@ function Home() {
               <th>日付</th>
             </tr>
           </thead>
-          {reportList.map(({ date }) => (
-            <tbody key={date}>
-              <tr>
+          <tbody>
+            {reportList.map(({ date }) => (
+              <tr key={date}>
                 <td>
                   <Button bsStyle='link' value={date} onClick={reference}>
                     {date}
                   </Button>
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </Table>
       </FlexForm>
     </Layout>

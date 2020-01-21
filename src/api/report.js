@@ -1,7 +1,7 @@
 import report from "src/constants/Report";
 import reportList from "src/constants/ReportList";
 
-const { apiUrl } = "http://170.49.27.111:9080";
+const apiUrl = "http://localhost:8080/api/report";
 const headers = {
   "Content-Type": "application/json"
 };
@@ -26,7 +26,15 @@ async function getList() {
   return reportList;
 }
 
-async function create() {}
+async function create() {
+  const res = await fetch(`${apiUrl}/new`, {
+    method: "POST",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
 
 async function editReport() {}
 
