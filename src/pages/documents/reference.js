@@ -35,7 +35,7 @@ function Reference({ date }) {
   return (
     <Layout>
       {reportList === null ? (
-        <p>...loading</p>
+        <p>Loading...</p>
       ) : (
         <FlexForm onSubmit={handleSubmit()}>
           <h2>{date}の週次進捗会</h2>

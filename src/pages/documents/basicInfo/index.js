@@ -63,7 +63,7 @@ function BasicInfo() {
   return (
     <Layout>
       {projectList === null ? (
-        <p>...Loading</p>
+        <p>Loading...</p>
       ) : (
         <FlexForm onSubmit={handleSubmit(onCreate)}>
           <h2>案件登録</h2>
