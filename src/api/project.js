@@ -5,15 +5,14 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-async function get() {
-  // const res = await fetch(`${apiUrl}/api/`, {
-  //   method: "GET",
-  //   headers
-  // });
-  // const json = await res.json();
-  // if (!res.ok) throw new Error(json.message);
-  // return json;
-  return basicInfo;
+async function get(id) {
+  const res = await fetch(`${apiUrl}/${id}`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
 async function getList() {

@@ -32,7 +32,6 @@ function BasicInfo() {
 
   function edit(e) {
     const id = e.target.value;
-    console.log(id);
     Router.push(`/documents/basicInfo/edit?id=${id}`);
   }
 

@@ -25,16 +25,14 @@ const SubmitButtonContainer = styled.div`
 function Edit({ id }) {
   const { project, find, editInfo } = useProject();
 
-  const [projectId, setProjectId] = useState(id);
   const [basicInfo, setBasicInfo] = useState(null);
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    setProjectId(Number(id));
-    if (projectId) {
-      find();
+    if (id) {
+      find(id);
     }
-  }, [projectId]);
+  }, [id]);
 
   useEffect(() => {
     if (project) {
@@ -64,9 +62,9 @@ function Edit({ id }) {
                 <td>案件</td>
                 <td>
                   <FormControl
-                    componentClass="textarea"
-                    id="name"
-                    name="name"
+                    componentClass='textarea'
+                    id='name'
+                    name='name'
                     defaultValue={basicInfo.name}
                     inputRef={register}
                   />
@@ -78,9 +76,9 @@ function Edit({ id }) {
                 <td>リリース期限</td>
                 <td>
                   <FormControl
-                    componentClass="textarea"
-                    id="deadline"
-                    name="deadline"
+                    componentClass='textarea'
+                    id='deadline'
+                    name='deadline'
                     defaultValue={basicInfo.deadline}
                     inputRef={register}
                   />
@@ -92,9 +90,9 @@ function Edit({ id }) {
                 <td>担当役席</td>
                 <td>
                   <FormControl
-                    componentClass="textarea"
-                    id="leader"
-                    name="leader"
+                    componentClass='textarea'
+                    id='leader'
+                    name='leader'
                     defaultValue={basicInfo.leader}
                     inputRef={register}
                   />
@@ -106,9 +104,9 @@ function Edit({ id }) {
                 <td>メンバー</td>
                 <td>
                   <FormControl
-                    componentClass="textarea"
-                    id="member"
-                    name="member"
+                    componentClass='textarea'
+                    id='member'
+                    name='member'
                     defaultValue={basicInfo.member}
                     inputRef={register}
                   />
@@ -117,7 +115,7 @@ function Edit({ id }) {
             </ItemContainer>
           </Table>
           <SubmitButtonContainer>
-            <Button bsStyle="primary" type="submit">
+            <Button bsStyle='primary' type='submit'>
               保存
             </Button>
           </SubmitButtonContainer>

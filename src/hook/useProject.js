@@ -6,9 +6,9 @@ function useProject() {
   const [projectList, setProjectList] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const find = async () => {
+  const find = async id => {
     setLoading(true);
-    setProject(await projectApi.get());
+    setProject(await projectApi.get(id));
     setLoading(false);
   };
 
