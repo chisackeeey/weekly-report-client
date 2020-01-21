@@ -35,9 +35,13 @@ function BasicInfo() {
     Router.push(`/documents/basicInfo/edit?id=${id}`);
   }
 
-  function change(e) {
-    changeStatus(e.target.id);
-  }
+  const change = async e => {
+    try {
+      await changeStatus({ id: e.target.id });
+    } catch (e) {
+      alert(e.toString());
+    }
+  };
 
   const onCreate = async () => {
     try {

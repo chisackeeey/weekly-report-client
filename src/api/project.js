@@ -47,9 +47,19 @@ async function editInfo({ id, data }) {
       member: data.member
     })
   });
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
-async function changeStatus(projectId) {}
+async function changeStatus({ id }) {
+  const res = await fetch(`${apiUrl}/change/${id}`, {
+    method: "POST",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
 
 export default {
   get,
