@@ -1,5 +1,3 @@
-import basicInfo from "src/constants/BasicInfo";
-
 const apiUrl = "http://localhost:8080/api/project";
 const headers = {
   "Content-Type": "application/json"
@@ -47,6 +45,7 @@ async function editInfo({ id, data }) {
       member: data.member
     })
   });
+  const json = await res.json();
   if (!res.ok) throw new Error(json.message);
   return json;
 }
