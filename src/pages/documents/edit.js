@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, FormControl, Table } from "react-bootstrap";
 import styled from "styled-components";
 import Router from "next/router";
+import useForm from "react-hook-form/dist/react-hook-form";
 import BackButton from "src/components/BackButton";
 import Layout from "src/components/Layout";
 import useReport from "src/hook/useReport";
@@ -21,83 +22,82 @@ const SubmitButtonContainer = styled.div`
   margin-right: 10px;
 `;
 
-const save = e => {
-  const date = e.target.value;
-  Router.push(`/documents/reference?date=${date}`);
-};
+function Edit({ value }) {
+  const { register, handleSubmit } = useForm();
+  const { report, find, editReport } = useReport();
 
-function Edit({ id, date }) {
-  const [projectId, setProjectId] = useState(null);
-  const [basicInfo, setBasicInfo] = useState(null);
-  const [weeklyInfo, setWeeklyInfo] = useState(null);
-
-  const { report, find } = useReport();
+  const [id, setId] = useState(null);
 
   useEffect(() => {
-    setProjectId(Number(id));
-    if (date) {
-      find(date);
+    setId(Number(value));
+    if (value) {
+      find(value);
     }
-  }, [id, date]);
+  }, [value]);
 
-  useEffect(() => {
-    if (report) {
-      report.info.map(({ basicInfo, weeklyInfo }) => {
-        if (weeklyInfo.id === projectId) {
-          setBasicInfo(basicInfo);
-          setWeeklyInfo(weeklyInfo);
-        }
-      });
+  const save = async data => {
+    try {
+      await editReport({ id, data });
+      Router.push(`/documents/reference?date=${report.reportDate.date}`);
+    } catch (e) {
+      alert(e.toString());
     }
-  }, [report]);
+  };
 
   return (
     <Layout>
-      {basicInfo === null || weeklyInfo === null ? (
+      {report === null ? (
         <p>Loading...</p>
       ) : (
-        <FlexForm>
+        <FlexForm onSubmit={handleSubmit(save)}>
           <h2>報告内容編集</h2>
           <Table striped bordered condensed hover>
             <ItemContainer>
               <tr>
                 <td>日付</td>
-                <td>{report.date}</td>
+                <td>{report.reportDate.date}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>案件</td>
-                <td>{basicInfo.name}</td>
+                <td>{report.project.name}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>リリース期限</td>
-                <td>{basicInfo.deadline}</td>
+                <td>{report.project.deadline}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>担当役席</td>
-                <td>{basicInfo.leader}</td>
+                <td>{report.project.leader}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
                 <td>メンバー</td>
-                <td>{basicInfo.member}</td>
+                <td>{report.project.member}</td>
               </tr>
             </ItemContainer>
             <ItemContainer>
               <tr>
-                <td>進捗状況</td>
+                <td>進捗状況(前週)</td>
+                <td>{report.lastWeekCondition}</td>
+              </tr>
+            </ItemContainer>
+            <ItemContainer>
+              <tr>
+                <td>進捗状況(今週)</td>
                 <td>
                   <FormControl
                     componentClass='textarea'
-                    id='condition'
-                    name='condition'
-                    defaultValue={weeklyInfo.condition}
+                    id='thisWeekCondition'
+                    name='thisWeekCondition'
+                    defaultValue={report.thisWeekCondition}
+                    inputRef={register}
                   />
                 </td>
               </tr>
@@ -110,7 +110,8 @@ function Edit({ id, date }) {
                     componentClass='textarea'
                     id='thisWeekPlan'
                     name='thisWeekPlan'
-                    defaultValue={weeklyInfo.thisWeekPlan}
+                    defaultValue={report.thisWeekPlan}
+                    inputRef={register}
                     rows='10'
                   />
                 </td>
@@ -124,7 +125,8 @@ function Edit({ id, date }) {
                     componentClass='textarea'
                     id='thisWeekResult'
                     name='thisWeekResult'
-                    defaultValue={weeklyInfo.thisWeekResult}
+                    defaultValue={report.thisWeekResult}
+                    inputRef={register}
                     rows='10'
                   />
                 </td>
@@ -138,7 +140,8 @@ function Edit({ id, date }) {
                     componentClass='textarea'
                     id='problem'
                     name='problem'
-                    defaultValue={weeklyInfo.problem}
+                    defaultValue={report.problem}
+                    inputRef={register}
                     rows='5'
                   />
                 </td>
@@ -152,7 +155,8 @@ function Edit({ id, date }) {
                     componentClass='textarea'
                     id='nextWeekPlan'
                     name='nextWeekPlan'
-                    defaultValue={weeklyInfo.nextWeekPlan}
+                    defaultValue={report.nextWeekPlan}
+                    inputRef={register}
                     rows='10'
                   />
                 </td>
@@ -160,7 +164,7 @@ function Edit({ id, date }) {
             </ItemContainer>
           </Table>
           <SubmitButtonContainer>
-            <Button bsStyle='primary' value={weeklyInfo.date} onClick={save}>
+            <Button bsStyle='primary' type='submit'>
               保存
             </Button>
           </SubmitButtonContainer>
@@ -171,6 +175,6 @@ function Edit({ id, date }) {
   );
 }
 
-Edit.getInitialProps = ({ query }) => ({ id: query.id, date: query.date });
+Edit.getInitialProps = ({ query }) => ({ value: query.id });
 
 export default Edit;

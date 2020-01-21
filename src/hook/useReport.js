@@ -7,9 +7,9 @@ function useReport() {
   const [reportDateList, setReportDateList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const find = async date => {
+  const find = async id => {
     setLoading(true);
-    setReport(await reportApi.get(date));
+    setReport(await reportApi.get(id));
     setLoading(false);
   };
 
@@ -31,9 +31,9 @@ function useReport() {
     setLoading(false);
   };
 
-  const editReport = async () => {
+  const editReport = async ({ id, data }) => {
     setLoading(true);
-    await reportApi.editReport();
+    await reportApi.editReport({ id, data });
     setLoading(false);
   };
 

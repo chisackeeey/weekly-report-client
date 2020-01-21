@@ -5,18 +5,18 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-async function get(date) {
-  // const res = await fetch(`${apiUrl}/api/`, {
-  //   method: "GET",
-  //   headers
-  // });
-  // const json = await res.json();
-  // if (!res.ok) throw new Error(json.message);
-  return report;
+async function get(id) {
+  const res = await fetch(`${apiUrl}?id=${id}`, {
+    method: "GET",
+    headers
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
 }
 
 async function getList(date) {
-  const res = await fetch(`${apiUrl}?date=${date}`, {
+  const res = await fetch(`${apiUrl}/list?date=${date}`, {
     method: "GET",
     headers
   });
@@ -26,7 +26,7 @@ async function getList(date) {
 }
 
 async function getDateList() {
-  const res = await fetch(`${apiUrl}/list/`, {
+  const res = await fetch(`${apiUrl}/dateList/`, {
     method: "GET",
     headers
   });
@@ -45,7 +45,22 @@ async function create() {
   return json;
 }
 
-async function editReport() {}
+async function editReport({ id, data }) {
+  const res = await fetch(`${apiUrl}/edit?id=${id}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      thisWeekCondition: data.thisWeekCondition,
+      thisWeekPlan: data.thisWeekPlan,
+      thisWeekResult: data.thisWeekResult,
+      problem: data.problem,
+      nextWeekPlan: data.nextWeekPlan
+    })
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
 
 async function editMemo() {}
 
