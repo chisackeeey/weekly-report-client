@@ -32,6 +32,7 @@ function BasicInfo() {
 
   function edit(e) {
     const id = e.target.value;
+    console.log(id);
     Router.push(`/documents/basicInfo/edit?id=${id}`);
   }
 
@@ -141,34 +142,26 @@ function BasicInfo() {
             </thead>
             <tbody>
               {projectList.map(
-                ({ projectId, name, deadline, leader, member, status }) => (
-                  <tr key={projectId}>
+                ({ id, name, deadline, leader, member, status }) => (
+                  <tr key={id}>
                     <td>{name}</td>
                     <td>{deadline}</td>
                     <td>{leader}</td>
                     <td>{member}</td>
                     <td>{status}</td>
                     <td>
-                      <Button bsStyle='link' value={projectId} onClick={edit}>
+                      <Button bsStyle='link' value={id} onClick={edit}>
                         編集
                       </Button>
                     </td>
                     <td>
                       {status === "open" && (
-                        <Button
-                          bsStyle='danger'
-                          id={projectId}
-                          onClick={change}
-                        >
+                        <Button bsStyle='danger' id={id} onClick={change}>
                           close
                         </Button>
                       )}
                       {status === "close" && (
-                        <Button
-                          bsStyle='primary'
-                          id={projectId}
-                          onClick={change}
-                        >
+                        <Button bsStyle='primary' id={id} onClick={change}>
                           open
                         </Button>
                       )}
