@@ -51,7 +51,6 @@ async function editInfo({ id, data }) {
 }
 
 async function changeStatus(id) {
-  console.log(`${apiUrl}/change?id=${id}`);
   const res = await fetch(`${apiUrl}/change?id=${id}`, {
     method: "POST",
     headers
