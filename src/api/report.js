@@ -62,7 +62,16 @@ async function editReport({ id, data }) {
   return json;
 }
 
-async function editMemo() {}
+async function editMemo(dataList) {
+  const res = await fetch(`${apiUrl}/editMemo`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(dataList)
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message);
+  return json;
+}
 
 export default {
   get,

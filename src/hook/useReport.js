@@ -37,9 +37,9 @@ function useReport() {
     setLoading(false);
   };
 
-  const editMemo = async () => {
+  const editMemo = async dataList => {
     setLoading(true);
-    await reportApi.editMemo();
+    await reportApi.editMemo(dataList);
     setLoading(false);
   };
 

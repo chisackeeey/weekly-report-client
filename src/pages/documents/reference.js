@@ -27,9 +27,21 @@ function Reference({ date }) {
     findList(dayjs(date).format("YYYY-MM-DD"));
   }, [date]);
 
-  const edit = e => {
+  const onEdit = e => {
     const id = e.target.id;
     Router.push(`/documents/edit?id=${id}`);
+  };
+
+  const onSave = async data => {
+    try {
+      const dataList = [...Array(reportList.length)].map((_, i) => ({
+        id: reportList[i].id,
+        memo: data[reportList[i].id]
+      }));
+      editMemo(dataList);
+    } catch (e) {
+      alert(e.toString());
+    }
   };
 
   return (
@@ -37,7 +49,7 @@ function Reference({ date }) {
       {reportList === null ? (
         <p>Loading...</p>
       ) : (
-        <FlexForm onSubmit={handleSubmit()}>
+        <FlexForm onSubmit={handleSubmit(onSave)}>
           <h2>{date}の週次進捗会</h2>
           <Table striped bordered condensed hover>
             <thead>
@@ -82,7 +94,7 @@ function Reference({ date }) {
                       bsStyle='link'
                       id={report.id}
                       value={date}
-                      onClick={edit}
+                      onClick={onEdit}
                     >
                       編集
                     </Button>
